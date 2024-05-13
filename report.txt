@@ -1,0 +1,55 @@
+Cloud-Based Inventory Management System Implementation Details
+Since this was for a company project the code or the images are not shared publicly.
+1. Data Acquisition:
+
+Data Sources: Integrated various data sources: internal applications, external APIs, and manual data entry points.
+AWS Service: Configured Amazon SQS as a message queue to buffer incoming inventory data. This ensures smooth data flow and prevents data loss during peak loads.
+2. Data Processing & Storage:
+
+Worker Service: Developed Python scripts using AWS Lambda functions to process data received from the SQS queue.
+Data Transformations: Implemented data cleaning and validation logic within the Lambda functions to ensure data quality before storage.
+Database: Deployed Amazon RDS for PostgreSQL as a secure and scalable storage solution for structured inventory data.
+Data Warehouse (Optional): Optionally set up Amazon Redshift as a data warehouse for storing historical inventory data. This facilitates deeper analysis with tools like Tableau.
+3. User Interface & Management:
+
+Web Application: Built a user-friendly web application using the Django framework to provide an interface for inventory management tasks.
+API Gateway: Implemented API Gateway to manage API requests to the backend services, ensuring efficient communication between the frontend and backend.
+User Authentication: Integrated AWS Cognito for user authentication and authorization to enhance system security.
+4. Inventory Management Logic:
+
+Backend Services: Developed backend services using Python with AWS Lambda functions for core functionalities:
+Adding/updating inventory data.
+Generating reports.
+Triggering low-stock alerts.
+5. Monitoring & Analytics:
+
+Monitoring: Configured Amazon CloudWatch to monitor system health and performance metrics in real-time.
+Auditing: Implemented Amazon CloudTrail to track API calls and user activity for audit purposes and ensuring security compliance.
+Data Visualization: Integrated Tableau with Amazon Redshift (if used) to provide insightful dashboards for inventory data analysis.
+Enhancements:
+
+Alerting: Incorporated Amazon SNS for sending real-time alerts to relevant stakeholders regarding inventory levels.
+Static Assets: Utilized Amazon S3 for storing static assets used by the web application, improving scalability and performance.
+This implementation leverages a combination of AWS services and open-source technologies (Django, Python) to create a robust, scalable, and cost-effective cloud-based inventory management system.
+
+
++-------------------+         +-------------------+         +-----------------------+
+| User Interface     |         | Web Application    |         | Inventory Management  |
+| (Web App)          |         | (EC2/Beanstalk)   |         | Functions (Lambda)    |
++-------------------+         +-------------------+         +-----------------------+
+                |                 |
+                v                 v
++-------------------+         +-------------------+         +-------------------+
+| Amazon Cognito    |         | Amazon RDS        |         | Amazon DynamoDB    |
+| (User Auth)       |         | (Relational DB)   |         | (NoSQL Database)   |
++-------------------+         +-------------------+         +-------------------+
+                |                 |
+                v                 v
++-------------------+         +-------------------+
+| Amazon S3        |         | Other AWS Services|
+| (Static Assets)   |         | (SNS, CloudWatch)  |
++-------------------+         +-------------------+
+
+
+
+
